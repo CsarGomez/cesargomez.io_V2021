@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       </Head>
 
       
-      <div className='w-screen h-screen bg-[#102026] flex flex-col justify-center items-center'>
+      <div className='w-screen h-screen bg-[#102026] flex flex-col justify-center px-[6rem]'>
 
       <h1 className='font-bold text-[42px] text-[#f2f2f2] my-[2rem]'>Hello,</h1>
       <p className='text-[16px] text-[#d9d9d9]'>thanks for your interest, im still working on my new personal website, it will be ready soon!</p>
