@@ -1,3 +1,106 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  @font-face {
+    font-family: 'Rubik';
+    src: url('/fonts/rubik-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Rubik';
+    src: url('/fonts/rubik-700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Taviraj';
+    src: url('/fonts/taviraj-italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+  }
+  body{
+    @apply bg-white dark:bg-black text-tundora dark:text-silver;
+    font-family: 'Rubik';
+  }
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance:none;
+  }
+  header{
+    @apply bg-white dark:bg-black;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    height: 50px;
+  }
+  p {
+    padding: 5px 0
+  }
+  .backToHome{
+    @apply border-2 border-mine hover:bg-black hover:text-white hover:dark:bg-white hover:dark:text-black dark:border-alto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin: 20px auto;
+    border-radius: 5px;
+    width: 150px;
+  }
+  .nav{
+    @apply px-[1.25rem] max-w-[500px] mx-auto md:max-w-[800px] md:mx-auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+  }
+  .nav__menu_items{
+    width: 100%;
+    @apply bg-white/[.70] backdrop-blur-[4.5px] dark:bg-black/[.70];
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    position: fixed;
+    left: -500px;
+    top: 50px;
+    bottom: 0;
+    width: 100%;
+    opacity: 0;
+    min-height: calc(100% - 50px);
+  }
+  .nav__menu_items.active {
+    left: 0px;
+    opacity: 1;
+  }
+  .nav__menu{
+    @apply py-[5px] px-[10px] border-2 rounded-[5px] border-mine text-mine dark:text-alto dark:border-alto;
+  }
+  .nav__link{
+    @apply text-xl px-[10px] pb-[5px] border-b-2 border-b-alto dark:border-tundora;
+  }
+
+  @media (min-width: 768px){
+    .nav__menu{
+      display: none;
+    }
+    .nav__menu_items{
+      position: unset;
+      min-height: 50px;
+      flex-direction: row;
+      align-items: center;
+      column-gap: 10px;
+      opacity: 100;
+      width: auto;
+    }
+    .nav__link{
+      @apply text-base border-b-0;
+    }
+  }
+}

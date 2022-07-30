@@ -1,0 +1,43 @@
+---
+id: '01'
+title: 'How to install external ZSH themes in macOS'
+author: 'Cesar Gomez'
+date: '2020-03-27'
+excerpt: 'install external themes in ZSH its a little different than the default themes'
+tags: ['ZSH', 'macOS']
+---
+
+## Install Cobalt 2 theme 
+first open the *~/.oh-my-zsh/themes/* directory, this is a hidden directory.
+
+> to show hidden directories press shift + cmd + .
+
+to get the <ExternalLink href='https://github.com/wesbos/hyperterm-cobalt2-theme' text='Cobalt2 theme' /> go to the link drag the archive named as cobalt2.zshtheme and drop into the *.oh-my-zsh* folder
+
+<Picture src='/static/blog/cobalt2-github.png' alt='cobalt2 github' />
+
+open ZSH preferences (i use VSCode for that <ExternalLink href='https://cesargomez.io/blog/install-HyperJs' text='how to here'/>) and change the line:
+
+```shell:ZSH_preferences
+  ZSH_THEME='cobalt2'
+```
+
+now you need to refresh your ZSH with following command:
+
+```shell:hyper.js
+  source ~/.zshrc
+```
+
+### install ans setup power fonts
+
+Cobalt2 uses power fonts for prompt, so power fonts need to be installed aand cam be download from <ExternalLink href='https://github.com/powerline/fonts' text='here'/> and installed as you instal regular fonts.
+
+Since i use Hyper i need to setup the power fonts in Hyper.js, so open hyper preferences 
+
+```shell:hyper.js
+ code ~/.zshrc
+```
+
+and then add the font 
+
+<Picture src='/static/blog/add-power-font.png' alt='add power fonts' />

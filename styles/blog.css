@@ -1,0 +1,162 @@
+h1:not(article h1){
+  @apply pb-[10px] mb-[10px] text-3xl font-bold text-black border-b-2 border-b-alto md:text-5xl dark:text-white dark:border-b-mine;
+}
+h2:not(article h2){
+  @apply my-[30px] text-xl font-bold text-black md:text-3xl dark:text-white;
+}
+h3:not(article h3){
+  @apply my-[20px] text-base font-bold text-black md:text-2xl dark:text-white;
+}
+a:not(a.nav__link, a.backToHome, article a, h1 a, h2 a, h3 a){
+  @apply font-taviraj text-radical;
+}
+blockquote {
+  @apply my-10 pl-2 py-[2px] flex items-center border-l-4 border-radical font-taviraj;
+}
+ul li p{
+  display: inline;
+}
+li {
+  text-decoration: none;
+  padding-left: 20px;
+}
+li::before{
+  @apply text-alto dark:text-tundora;
+  content: '\2022';
+  font-size: 24px;
+  padding-right: 5px;
+}
+  /* REHYPE CODE TITLES + REHYPE PRISM PLUGINS */
+.rehype-code-title {
+  font-family: taviraj;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #2E3440; 
+  border-radius: 0.3em 0.3em 0 0;
+  color:#dbe9f7;
+  border-bottom: 1px dashed #636f88;
+}
+
+.rehype-code-title + pre[class*="language-"] {
+  margin-top: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #f8f8f2;
+  background: none;
+  font-family: "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: 10px 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #2E3440;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #636f88;
+}
+
+.token.punctuation {
+  color: #81A1C1;
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #81A1C1;
+}
+
+.token.number {
+  color: #B48EAD;
+}
+
+.token.boolean {
+  color: #81A1C1;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #A3BE8C;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: #81A1C1;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  color: #88C0D0;
+}
+
+.token.keyword {
+  color: #81A1C1;
+}
+
+.token.regex,
+.token.important {
+  color: #EBCB8B;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}

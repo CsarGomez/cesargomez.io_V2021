@@ -1,0 +1,58 @@
+---
+id: '02'
+title: 'How to install and setup Hyper.js (terminal) in macOS'
+author: 'Cesar Gomez'
+date: '2019-10-13'
+excerpt: 'Hyper.js is a terminal emulator builded with web technologies like HTML, CSS and JavaSctipr'
+tags: ['Hyper.js', 'macOS']
+---
+
+## Install
+
+go to the <ExternalLink href='https://hyper.is/' text='Hyper.js'/> website and download the app
+
+## setup
+
+by default Hyper uses <ExternalLink href='https://es.wikipedia.org/wiki/Bash' text='bash'/> as a command interpreter, so i will replace bash with <ExternalLink href='https://es.wikipedia.org/wiki/Zsh' text='zsh'/>, due to that we will be able to use <ExternalLink href='https://ohmyz.sh/' text='oh-my-zsh'/> which will allow us to pimp our terminal.
+
+## install oh-my-zsh
+
+go to the website and follow the instructions or just install vie curl or wget with the following comands:
+
+```shell:hyper.js_via-curl
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+```shell:hyper.js_via-wget
+  sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+```
+
+Now since we are using oh-my-zsh it will allow us to use whatever theme that are ablailable in <ExternalLink href='https://github.com/ohmyzsh/ohmyzsh/wiki/Themes' text='here' /> and you will be able to see a quick preview for each theme.
+
+### setup themes
+
+i like to open Hyper preferences in VSCode, so i will setup this feature first by opening the VScode preferences
+
+```shell:VSCode
+  cmd + shift + p
+```
+once the command prompt line is open hit
+
+```shell:hyper.js
+  install code
+```
+
+after that you will be able to open Hyper and Zsh preferences in VSCode by typing in your Hyper:
+
+```shell:Hyper
+  code ~/.hyper.js
+```
+```shell:ZSH
+  code ~/.zshrc
+```
+
+once you open the ZSH preferences you can add the theme you want by replace:
+
+```shell:ZSH_preferences
+  ZSH_THEME='theme-you-like'
+```

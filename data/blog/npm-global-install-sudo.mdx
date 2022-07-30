@@ -1,0 +1,90 @@
+---
+id: '04'
+title: 'NPM ask sudo for command for global install'
+author: 'Cesar Gomez'
+date: '2021-12-14'
+excerpt: 'if you are trying to do npm global install and its asking for sudo command you may want to fix your permissions'
+tags: ['npm', 'Node.js', 'macOS']
+---
+
+npm global install return and access error (EACCES error) asking for sudo command in order to install global packages, this happens due to the fact that permissions has been wrong setup. 
+
+this article applies for macOS ans ZSH users.
+
+### npm default directory
+
+The default directory for npm is */usr/local/* you can check in your terminal
+
+```shell:Hyper
+  npm config get prefix
+  # it should return /usr/local
+```
+
+### node_modules permissions check
+
+To check the permissions for node_modules use the following command:
+
+```shell:Hyper
+  ls -la /usr/local/lib/node_modules
+  # you should get something like this:
+
+  # total 0
+  # drwxr-xr-x   4 root  128 ...
+  # drwxr-xr-x   4 root  128 ...
+  # drwxr-xr-x   7 root  128 ... corepack
+  # drwxr-xr-x  13 root  128 ... npm
+```
+
+this means that the only user that can read and write under the folder is *root* that's why you need to use the *sudo* command.
+
+But you can install npm packages without sudo command by changing the default directory to a different one
+
+### Change npm directory
+
+Before change the current directory we need to create a new one under the home directory:
+
+go to your home directory and to double check in which directory you are, use the command
+
+```shell:Hyper
+  pwd
+  # return: /Users/cesargomez (home directory)
+```
+
+create a new folder insode the home directory and you can named as you preffer, i will named as **npm-global**
+
+```shell:Hyper
+  mkdir npm-global
+```
+
+move to the new npm-global folder by using
+
+```shell:Hyper
+  cd npm-global
+```
+
+setup the new directory to be the npm directory with the following command:
+
+```shell:Hyper
+  npm config set prefix /Users/user/new_folder
+
+  # example: npm config set prefix /User/cesargomez/npm-global
+```
+
+now we need to update the system $PATH in this case the zsh Path, so from you home directory open your zsh preferences with VScode 
+
+```shell:Hyper
+  code ~/.zshrc
+```
+ and modifie the like that start with **export PATH = ...** with you new path and add */bin:$PATH* at the end like this
+
+```shell:VSCode
+  export PATH=/Users/your_user/your_new_directory/bin:$PATH
+```
+
+the we need to update the zsh variables by typing:
+
+```shell:Hyper
+  source ~/.zshrc
+```
+
+this will fix you permissions setup, now you will be able to install npm global packages without having to use the sudo command.
