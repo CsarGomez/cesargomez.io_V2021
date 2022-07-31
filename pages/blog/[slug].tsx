@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import MDXComponenets from '../../components/blog/MDXComponents';
-import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrism from 'rehype-prism-plus';
@@ -28,7 +27,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { content, meta } = getPostFromSlug(slug);
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [remarkGfm],
       rehypePlugins: [
         rehypeSlug,
         rehypeCodeTitles,
