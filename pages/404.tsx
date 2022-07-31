@@ -7,7 +7,7 @@ export default function NotFound() {
       <div className='flex flex-col md:justify-center items-center md:flex-row gap-3'>
         <div className='mt-[10px] md:mt-0 md:w-[50%]'>
           <p className='text-center'>
-            This page does not exist, but here&sbquo;s my little girl called
+            This page does not exist, but here&apos;s my little girl called
             Sharon
           </p>
           <Link href='/'>
