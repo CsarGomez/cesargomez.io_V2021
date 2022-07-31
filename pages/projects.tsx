@@ -14,7 +14,11 @@ const Projects = () => {
       </h2>
 
       <main className='mt-[50px]'>
-        <p>projects here!</p>
+        <p>
+          im currently working to get this page done, it will take me sometime
+          since i need to prepare thumbnails and other little details, but it
+          will be ready soon
+        </p>
       </main>
     </div>
   );
