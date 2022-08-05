@@ -1,0 +1,305 @@
+---
+id: '06'
+title: 'How to Setup ESLint and Prettier'
+author: 'Cesar Gomez'
+date: '2022-08-05'
+excerpt: 'How to setup ESLint and Prettier in your VSCode project'
+tags: ['Javascript', 'Vscode']
+---
+
+## Install and setup ESLint
+
+if your a npm user or yarn user run one of these commands:
+
+```shell:Hyper
+  # npm user's:
+  npm install -D eslint
+
+  # yarn user's
+  yarn add eslint
+```
+
+After the install we need to setup ESLint, to do that we need to create a config file:
+
+```shell:Hyper
+  # npm user's:
+  npx eslint --init
+
+  # yarn user's
+  yarn eslint --init
+```
+
+This will use ESLint config assistance which will start doing some questions:
+
+- **How would you like to use ESLint?**
+
+  - To check syntax only
+  - To check syntax and find problems
+  - To check syntax, find problems, and enforce code style ✔️
+
+- **What type of module does your project use?**
+
+  - JavaScript modules (import/export) ✔️
+  - CommonJS (require/exports)
+  - None of these
+
+- **Which framework does your project use?**
+
+  - React ✔️
+  - Vue.js
+  - None of these
+
+- **Does your project use Typescript?**
+
+  - No
+  - Yes ✔️
+
+- **Whre does your code run?** _Press space to select, a to toggle all, i to invert selection_
+
+  - Browser ✔️
+  - Node ✔️
+    > this is due to im using Nextjs for the project, otherwise if yo have a front-end project only use browser, and if its a back-end project use node
+
+- **Use a popular style guide or Answer questions about you style**
+
+  - Use a popular style guide ✔️
+  - Answer questions about your style
+
+- **Which style guide do you want to follow?**
+
+  - Airbnb: https://github.com/airbnb/javascript
+  - Standard: https://github.com/standard/standard ✔️
+  - Google: https://github.com/google/eslint-config-google
+  - XO: https://github.com/xojs/eslint-config-xo
+
+- **What format do you want your config file to be in?**
+  - JavaScript
+  - YAML
+  - JSON ✔️
+
+After that our ESLint config file should be in the root of the project named as: **.eslint.json**
+Now if you want to use it you can execute:
+
+```shell:Hyper
+  # npm user's:
+  npx eslint filename
+  # npx eslint src/main.tsx
+
+  # yarn user's
+  yarn run eslint filename
+  # yarn run eslint src/main.tsx
+```
+
+the command will run eslint to find problems in you code, and will give you the option to fix those problems by adding the flag _--fix_ at the end of the previous command
+
+```shell:Hyper
+  # npm user's:
+  npx eslint filename --fix
+  # npx eslint src/main.tsx --fix
+
+  # yarn user's
+  yarn run eslint filename --fix
+  # yarn run eslint src/main.tsx --fix
+```
+
+We can improve this by install the <ExternalLink href='https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint' text='ESLint extension for VSCode' />, this extension will give you instant UI feedback in your VSCode editor instad of running the command everytime you want to check a file.
+
+if you are using the ESLint extension, it will start to highlight the errors in your code, in this case is because the _import React from 'react'_ is missing, but since im in next.js is no needed, even Vite doesn't needed as well.
+
+<Picture src='/static/blog/ESLint.png' alt='ESlint error' />
+
+in this cases we have to options:
+
+- add the import.
+- we can disable ESLint rules as you needed.
+
+**Disable the rule for that line or document**
+
+you just need to put the cursor on the error and it will show you a box dialog with an option called _Quick Fix_, this option will show you how to fix it
+
+<Picture src='/static/blog/ESlint-scope.png' alt='ESLint fix' />
+
+**Modify the config file**
+
+each rules can take one of three values:
+
+- **off:** which disable the rule
+- **warn:** it will highlight the pice of code in orange and will display a warining message.
+- **error:** it will highlight the pice of code in red and will display a warining message.
+
+so you can add the following rules in the ESLint config file at it will fix the camelcase error.
+
+```json:.eslintrc.json
+  "rules": {
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  }
+```
+
+The names of the rules you may want to disable or modify, will appear in the box dialog as you can see in the previous image.
+
+but for this particular case we can use a better aproach if you are using the _new JSX tranform from React 17_ which is extending the _react/jsx-runtime_ rule in the ESLint config file.
+
+The way you can do it is adding the plugin into the "extends" in the ESLint config file:
+
+```json:.eslintrc.json
+  "extends": [
+		"plugin:react/recommended",
+		"standard",
+		"plugin:react/jsx-runtime"
+	],
+```
+
+heres the list of rules for <ExternalLink href='https://standardjs.com/rules' text='Standard style guide' />
+
+## Install and setup Prettier
+
+to intsall prettier run:
+
+```shell:Hyper
+  # npm user's:
+  npm install --save-dev --save-exact prettier
+
+  # yarn user's
+  yarn add --dev --exact prettier
+```
+
+After install prettier you can the following command will show you in the console how the format should be
+
+```shell:Hyper
+  # npm user's:
+  npx prettier fileName
+  # example: npx prettier pages/index.tsx
+
+  # yarn user's
+  yarn prettier fileName
+  # example: yarn prettier pages/index.tsx
+```
+
+you can copy and overwrite the file or run the next command in orther to re-write the file according to prettier format suggestion:
+
+```shell:Hyper
+  # npm user's:
+  npx prettier fileName --writte
+  # example: npx prettier pages/index.tsx --write
+
+  # yarn user's
+  yarn prettier fileName --write
+  # example: yarn prettier pages/index.tsx --write
+```
+
+But this may cause errors due to ESLint will highlight the semicolons as errors and prettier don't, also ESLint will highlight singles quotes and prettier don't, an so on.
+For that reason we need to create a prettier confing file
+
+```shell:Hyper
+  echo {}> .prettierrc.json
+```
+
+<ExternalLink href='https://prettier.io/docs/en/options.html' text='Prettier' /> already
+provide a list with all the options you can customize.
+
+What we can do is just add our rules in the _prettierrc.json_ according with prettier options
+
+here's my prettier config that can be used as guidance:
+
+```json:.prettierrc.json
+  {
+    "useTabs": true,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "avoid"
+  }
+```
+
+After this it will be a conflicbetween ESLint and PRettir persist, but can be easily fix by installing a package:
+
+```shell:Hyper
+  # npm user's:
+  npm i -D eslint-config-prettier
+
+  # yarn user's
+  yarn add --dev eslint-config-prettier
+```
+
+and after that, we can added to the ESLint config file under the extends section, it will looks like this and this will perserve prettier rules instead of ESLint rules:
+
+```json:.eslintrc.json
+	"extends": [
+		"plugin:react/recommended",
+		"standard",
+		"plugin:react/jsx-runtime",
+		"eslint-config-prettier"
+	],
+```
+
+One more extra tip you can do is enable the format on save option from VSCode, this allows you to apply in an automate way the proper format changes a soon as you save the file.
+
+To do that go to _settings > search bar > format on save > enable the check box_
+
+## Setup script in package.json - (optional)
+
+Not every person use VSCode, and if they use it not all the VSCode users have the same extensions installed, If that's the case, we can add some scripts to the package.json, so they just need to run the scripts in order to format the code or find errors.
+
+the package.json will looks like this:
+
+**with nextjs**
+
+```json:package.json
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "format": "prettier --write .",
+    "lint": "eslint --fix . --ext .js,.jsx,.ts,.tsx"
+  },
+```
+
+**with vite**
+
+```json:package.json
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write .",
+    "lint": "eslint --fix . --ext .js,.jsx,.ts,.tsx"
+  },
+```
+
+by default running the scripts it will overwrite the Dist folder, and we don't want that.
+So we need to add 2 extra files named as: _.prettierignore_ , _.eslintignore_
+
+so add a prettierignore file:
+
+```shell:Hyper
+echo {}> .prettierignore
+echo {}> .eslintignore
+```
+
+and add the following line
+
+```json:.prettierignore
+  dist
+  package-lock.json #if you use npm you should this line too
+```
+
+```json:.eslintignore
+  dist
+```
+
+After that if you try to run the script _yarn run lint_ or _npm run lint_, you will se a warning message saying:
+
+_React version not specified in eslint-plugin-react_
+
+to fix that, we can add in eslintrc file:
+
+```json:.eslintrc.json
+  	"settings": {
+		"react": {
+      "verson": "detect"
+    },
+	},
+```
+
+and that's all!
